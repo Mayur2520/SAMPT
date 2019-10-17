@@ -6,12 +6,18 @@ import { MaterialModules } from '../ionic-plugins/material-module';
 import { IonicModule } from '@ionic/angular';
 import { ThemeColorDirective } from '../directives/theme-color.directive';
 import { TabsPage } from './tabs.page';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NavigationPage } from '../navigation/navigation.page';
 import { HomeComponent } from './home/home.component';
 import { SalaryComponent } from './salary/salary.component';
 import { ReviewComponent } from './review/review.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DeviceAccounts  } from '@ionic-native/device-accounts/ngx';
+import { ThreeDeeTouch } from '@ionic-native/three-dee-touch/ngx'
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx'
+import { Device } from '@ionic-native/device/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+import { Autostart } from '@ionic-native/autostart/ngx';
 const routes: Routes = [
   {
     path: '',
@@ -56,7 +62,13 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  providers:[Geolocation],
+  providers:[Geolocation,DeviceAccounts,
+    ThreeDeeTouch,
+    BackgroundGeolocation,
+    Device,
+    Geolocation,
+    LocationAccuracy,
+    Autostart],
   declarations: [TabsPage,NavigationPage,HomeComponent,
     SalaryComponent,
     ReviewComponent,

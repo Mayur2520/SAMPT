@@ -41,10 +41,19 @@ export class LoginPage implements OnInit {
 
   AuthenticateUser()
   {
+    alert("inside function")
+    alert(JSON.stringify({username:this.usernameFormControl.value,password:this.PasswordFormControl.value,uuid:this.device.uuid}));
      this._AuthenticationService.AuthenticateUser({username:this.usernameFormControl.value,password:this.PasswordFormControl.value,uuid:this.device.uuid}).subscribe(
       data => {
-        this._storage.set('userdetails',JSON.stringify(data));
-        this.router.navigate(['/login/attendance']);
+        alert(JSON.stringify(data))
+        if(data.success == true)
+        {
+          this._storage.set('userdetails',JSON.stringify(data));
+          this.router.navigate(['/login/attendance']);
+        }
+        else{
+          this.errormsg = data.message;
+        }
       }) 
 
       // this.router.navigate(['/login/attendance']);
@@ -52,6 +61,7 @@ export class LoginPage implements OnInit {
 
   authuserOnuuid(uuid)
   {
+    alert(uuid);
     this._AuthenticationService.authuserOnuuid(uuid).subscribe(
       data => {
         if(data && data.success == true)
